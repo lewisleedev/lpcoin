@@ -28,7 +28,7 @@ def calculate_model(csv_name = "data.csv", month = 0):
     model += (btc + eth + bat + mana + theta + xlm + ada + eos == 1, "ratio_constraint")
     model += btc + eth <= 0.8 # 30% <= BTC + ETH <= 80%
     model += btc + eth >= 0.3
-    model += eth - 0.6 * btc <= 0 # 이더리움 투자액 <= 비트코인 투자율의 40%
+    model += eth - 0.6 * btc <= 0 # 이더리움 투자액 <= 비트코인 투자율의 60%
     model += mana + theta + bat + eos + xlm <= 0.5 # 10% <= 고위험 코인들 <= 50%
     model += mana + theta + bat + eos + xlm >= 0.1
     model += bat >=0.05 # BAT 투자비율 최소 5%
