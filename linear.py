@@ -27,12 +27,12 @@ def calculate_model(csv_name = "data.csv", month = 0):
     # 제약식
     model += (btc + eth + bat + mana + theta + xlm + ada + eos == 1, "ratio_constraint")
     model += btc + eth <= 0.8 # 30% <= BTC + ETH <= 80%
-    model += btc + eth >= 0.3 
-    model += eth - 0.4 * btc <= 0 # 이더리움 투자액 <= 비트코인 투자율의 40%
-    model += mana + theta + bat <= 0.4 # 10% <= 고위험 알트코인들 <= 40%
-    model += mana + theta + bat >= 0.1
+    model += btc + eth >= 0.3
+    model += eth - 0.6 * btc <= 0 # 이더리움 투자액 <= 비트코인 투자율의 40%
+    model += mana + theta + bat + eos + xlm <= 0.5 # 10% <= 고위험 코인들 <= 50%
+    model += mana + theta + bat + eos + xlm >= 0.1
     model += bat >=0.05 # BAT 투자비율 최소 5%
-    model += mana + theta <= 0.3 # NFT 관련 코인은 30% 이하
+    model += mana + theta <= 0.30 # NFT 관련 코인은 30% 이하
 
     # 3개월 이동평균 수익률 45% 이하의 제약식
 
@@ -74,3 +74,4 @@ if __name__ == "__main__":
         for i in range(12):
             result = calculate_model(month = i)
             w.writerows(result)
+    # print(calculate_model(month = 12))
